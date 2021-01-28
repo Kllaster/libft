@@ -79,35 +79,35 @@ char	*ft_strtrim(char const *str, char const *set);
 char	**ft_split(char const *s, char c);
 ```
 ```c
-int		ft_memcmp(const void *buf1, const void *buf2, size_t count);
+int	ft_memcmp(const void *buf1, const void *buf2, size_t count);
 ```
 ```c
-int		ft_strncmp(const char *str1, const char *str2, size_t n);
+int	ft_strncmp(const char *str1, const char *str2, size_t n);
 ```
 ```c
-int		ft_strlen(char *str);
+int	ft_strlen(char *str);
 ```
 ```c
-int		ft_isalpha(int ch);
+int	ft_isalpha(int ch);
 ```
 ```c
-int		ft_isdigit(int ch);
+int	ft_isdigit(int ch);
 ```
 ```c
-int		ft_isalnum(int ch);
+int	ft_isalnum(int ch);
 ```
 ```c
-int		ft_isascii(int ch);
+int	ft_isascii(int ch);
 ```
 ```c
-int		ft_isprint(int ch);
+int	ft_isprint(int ch);
 ```
 ```c
-int		ft_toupper(int ch);
+int	ft_toupper(int ch);
 ```
 ```c
-int		ft_tolower(int ch);
+int	ft_tolower(int ch);
 ```
 ```c
-int		ft_atoi(const char *str);
+int	ft_atoi(const char *str);
 ```
