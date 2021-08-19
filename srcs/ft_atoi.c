@@ -1,38 +1,42 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strnstr.c                                       :+:      :+:    :+:   */
+/*   ft_atoi.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: apending <apending@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/11/03 20:58:44 by apending          #+#    #+#             */
-/*   Updated: 2020/11/12 20:08:49 by apending         ###   ########.fr       */
+/*   Created: 2020/11/03 20:39:31 by apending          #+#    #+#             */
+/*   Updated: 2020/11/06 15:28:31 by apending         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-char	*ft_strnstr(const char *big, const char *little, size_t size)
+int	ft_atoi(const char *str)
 {
-	size_t i;
-	size_t z;
+	unsigned int	res;
+	int				sign;
 
-	i = 0;
-	if (!*little || big == little)
-		return ((char *)big);
-	while (big[i] && i < size)
+	res = 0;
+	sign = 1;
+	while (*str == '\t' || *str == '\n'
+		|| *str == '\v' || *str == '\f'
+		|| *str == '\r' || *str == ' ')
+		str++;
+	if (*str == '-' || *str == '+')
 	{
-		if (big[i] == little[0])
-		{
-			z = 0;
-			while (little[z] && big[i + z] == little[z] && (i + z) < size)
-			{
-				if (!little[1 + z])
-					return ((char *)&big[i]);
-				z++;
-			}
-		}
-		++i;
+		if (*str++ == '-')
+			sign = -1;
 	}
-	return (0);
+	while (*str >= '0' && *str <= '9')
+	{
+		if ((res * 10) < res)
+		{
+			if (sign < 1)
+				return (0);
+			return (-1);
+		}
+		res = res * 10 + (*str++ - '0');
+	}
+	return ((int)res * sign);
 }

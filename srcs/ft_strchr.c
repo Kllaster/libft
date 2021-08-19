@@ -14,7 +14,7 @@
 
 char	*ft_strchr(char *str, int sumb)
 {
-	int len;
+	int	len;
 
 	len = ft_strlen(str) + 1;
 	while (len--)

@@ -1,35 +1,33 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_atoi.c                                          :+:      :+:    :+:   */
+/*   ft_putnbr_fd.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: apending <apending@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/11/03 20:39:31 by apending          #+#    #+#             */
-/*   Updated: 2020/11/06 15:28:31 by apending         ###   ########.fr       */
+/*   Created: 2020/11/04 19:15:38 by apending          #+#    #+#             */
+/*   Updated: 2020/11/06 17:21:03 by apending         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
+#include <stdio.h>
 
-int	ft_atoi(const char *str)
+void	ft_putnbr_fd(int n, int fd)
 {
-	unsigned int	res;
-	int				sign;
+	unsigned int	num;
 
-	res = 0;
-	sign = 1;
-	while (*str == '\t' || *str == '\n' ||
-			*str == '\v' || *str == '\f' ||
-			*str == '\r' || *str == ' ')
-		str++;
-	if (*str == '-' || *str == '+')
-		sign = (*str++ == '-') ? -1 : 1;
-	while (*str >= '0' && *str <= '9')
+	if (n < 0)
 	{
-		if ((res * 10) < res)
-			return ((sign < 1) ? 0 : -1);
-		res = res * 10 + (*str++ - '0');
+		ft_putchar_fd('-', fd);
+		n *= -1;
 	}
-	return ((int)res * sign);
+	num = (unsigned int)n;
+	if (num >= 10)
+	{
+		ft_putnbr_fd((num / 10), fd);
+		ft_putchar_fd((num % 10) + '0', fd);
+	}
+	else
+		ft_putchar_fd(num + '0', fd);
 }

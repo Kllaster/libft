@@ -1,32 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strlcat.c                                       :+:      :+:    :+:   */
+/*   ft_substr.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: apending <apending@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/11/03 20:56:47 by apending          #+#    #+#             */
-/*   Updated: 2020/11/03 21:07:59 by apending         ###   ########.fr       */
+/*   Created: 2020/11/03 21:03:09 by apending          #+#    #+#             */
+/*   Updated: 2020/11/13 17:52:01 by apending         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-size_t	ft_strlcat(char *dst, const char *src, size_t size)
+char	*ft_substr(char const *s, unsigned int start, size_t len)
 {
-	size_t len;
-	size_t i;
+	char			*res;
 
-	len = (size_t)ft_strlen(dst);
-	if (len > size)
-		len = size;
-	i = len;
-	while (src[len - i] && len + 1 < size)
-	{
-		dst[len] = src[len - i];
-		++len;
-	}
-	if (i < size)
-		dst[len] = 0;
-	return ((size_t)ft_strlen((char *)src) + i);
+	if (!s)
+		return (NULL);
+	if (start > ft_strlen((char *)s))
+		return (ft_strdup(""));
+	res = malloc((len + 1) * sizeof(char));
+	if (res == NULL)
+		return (NULL);
+	*(res + len) = 0;
+	ft_memcpy(res, (const void *)s + start, len);
+	return (res);
 }
