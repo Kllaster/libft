@@ -3,56 +3,28 @@ CC				= gcc
 RM				= rm -f
 LIB				= ar rc
 MKDIR			= mkdir -p
-DEBUG			= 1
+DEBUG			= 0
 ifeq ($(DEBUG), 1)
 	DEBUG_FLAGS	= -fsanitize=address -g
+else
+	DEBUG_FLAGS = -march=native -O2 -flto -D_FORTIFY_SOURCE=2 -fpie
 endif
-COMMON_FLAGS	= -Wall -Wextra -Werror -MMD -c -D BUFFER_SIZE=500
-CFLAGS			= $(COMMON_FLAGS) -march=native -O2 -msse4a -flto -pipe
+PROTECT_FLAGS	= -fno-exceptions -fcf-protection=full -fstack-protector-all
+COMMON_FLAGS	= -std=c99 -Wall -Wextra -Werror -Wfloat-equal -MMD -pipe
+CFLAGS			= $(COMMON_FLAGS) $(DEBUG_FLAGS) $(PROTECT_FLAGS)
 
 BIN_DIR			= bin/
-BUILD_DIR		= build/
-HEADERS			= include/
+SRC_DIR			= srcs
+BUILD_DIR		= build
+INC_DIR			= include
 
-SRCS 			= srcs/ft_isalnum.c\
-				  srcs/ft_itoa.c\
-				  srcs/ft_memmove.c\
-				  srcs/ft_putstr_fd.c\
-				  srcs/ft_strlcat.c\
-				  srcs/ft_strrchr.c\
-				  srcs/ft_toupper.c\
-				  srcs/ft_isalpha.c\
-				  srcs/ft_memccpy.c\
-				  srcs/ft_memset.c\
-				  srcs/ft_split.c\
-				  srcs/ft_strlcpy.c\
-				  srcs/ft_strnstr.c\
-				  srcs/ft_atoi.c\
-				  srcs/ft_isascii.c\
-				  srcs/ft_memchr.c\
-				  srcs/ft_putchar_fd.c\
-				  srcs/ft_strchr.c\
-				  srcs/ft_strlen.c\
-				  srcs/ft_strtrim.c\
-				  srcs/ft_bzero.c\
-				  srcs/ft_isdigit.c\
-				  srcs/ft_memcmp.c\
-				  srcs/ft_putendl_fd.c\
-				  srcs/ft_strdup.c\
-				  srcs/ft_strmapi.c\
-				  srcs/ft_substr.c\
-				  srcs/ft_calloc.c\
-				  srcs/ft_isprint.c\
-				  srcs/ft_memcpy.c\
-				  srcs/ft_putnbr_fd.c\
-				  srcs/ft_strjoin.c\
-				  srcs/ft_strncmp.c\
-				  srcs/ft_tolower.c\
+SRCS			= $(shell find $(SRC_DIR) -name *.c)
 
 OBJS			= $(notdir $(SRCS))
-OBJS			:= $(OBJS:%.c=$(BUILD_DIR)%.o)
+OBJS			:= $(subst $(SRC_DIR), $(BUILD_DIR), $(SRCS:%.c=%.o))
+NAME			:= $(addprefix $(BIN_DIR), $(NAME))
 DEPS			= $(OBJS:.o=.d)
-NAME 			:= $(addprefix $(BIN_DIR), $(NAME))
+VPATH			= $(SRC_DIR):$(INC_DIR):$(BUILD_DIR)
 
 all:			$(NAME)
 
@@ -61,9 +33,9 @@ $(NAME):		$(OBJS)
 				$(LIB) $(NAME) $(OBJS)
 				ranlib $(NAME)
 
-$(OBJS):		$(SRCS)
+$(BUILD_DIR)/%.o: %.c
 				$(MKDIR) $(dir $@)
-				$(CC) $(CFLAGS) -I $(HEADERS) -c $< -o $@
+				$(CC) $(CFLAGS) -I $(INC_DIR) -c $< -o $@
 
 clean:
 				$(RM) $(OBJS)
