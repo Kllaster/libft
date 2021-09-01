@@ -15,6 +15,25 @@
 
 # include <stdlib.h>
 # include <unistd.h>
+# include <errno.h>
+
+# define COLOR_RED      "\x1b[31m"
+# define COLOR_RED_B    "\x1b[1;31m"
+# define COLOR_GREEN    "\x1b[32m"
+# define COLOR_YELLOW   "\x1b[33m"
+# define COLOR_YELLOW_B "\x1b[1;33m"
+# define COLOR_BLUE     "\x1b[34m"
+# define COLOR_MAGENTA  "\x1b[35m"
+# define COLOR_CYAN     "\x1b[36m"
+# define COLOR_CYAN_B   "\x1b[1;36m"
+# define COLOR_RESET    "\x1b[0m"
+
+typedef struct s_dlst
+{
+	void			*content;
+	struct s_dlst	*next;
+	struct s_dlst	*prev;
+}					t_dlst;
 
 void	*ft_memset(void *buf, int ch, size_t count);
 void	*ft_memcpy(void *dest, const void *source, size_t count);
@@ -50,4 +69,16 @@ int		ft_isprint(int ch);
 int		ft_toupper(int ch);
 int		ft_tolower(int ch);
 int		ft_atoi(const char *str);
+
+void	*kl_malloc(size_t size);
+void	kl_end(char *str, int exit_code);
+void	kl_free_arr(void *arr);
+char	*kl_strdup_len(const char *str, size_t len);
+
+t_dlst	*dlst_new(void *content);
+void	dlst_add_front(t_dlst **s_dlst_src, t_dlst *s_dlst_new);
+void	dlst_add_back(t_dlst **s_dlst_src, t_dlst *new);
+void	dlst_map(t_dlst *s_dlst, void (*func)(void *));
+void	dlst_loop(t_dlst **s_dlst);
+
 #endif

@@ -18,7 +18,7 @@ SRC_DIR			= srcs
 BUILD_DIR		= build
 INC_DIR			= include
 
-SRCS			= $(shell find $(SRC_DIR) -name *.c)
+SRCS			= $(shell find $(SRC_DIR) -name "*.c")
 
 OBJS			= $(notdir $(SRCS))
 OBJS			:= $(subst $(SRC_DIR), $(BUILD_DIR), $(SRCS:%.c=%.o))
