@@ -1,13 +1,18 @@
 # Libft
 ## Description
 
-My implementation some functions from the libc.<br>
+This is my implementation of some functions from the libc and some classical data structures.
 
 ## Usage
 
 ``make`` will compile a ``libft.a`` binary.
 
-## Functions
+### Single-line installation
+> ```commandline 
+> git clone https://github.com/Kllaster/libft.git && cd libft && make
+>  ```
+
+## Functions libc
 
 ```c
 void	*ft_memset(void *buf, int ch, size_t count);
@@ -110,4 +115,50 @@ int	ft_tolower(int ch);
 ```
 ```c
 int	ft_atoi(const char *str);
+```
+
+## Functions kl
+
+### Description
+Auxiliary functions, additions to standard functions.
+
+```c
+void	*kl_malloc(size_t size);
+```
+```c
+void	kl_end(char *str, int exit_code);
+```
+```c
+void	kl_free_arr(void *arr);
+```
+```c
+char	*kl_strdup_len(const char *str, size_t len);
+```
+
+## Functions dlst
+
+### Description
+Functions for working with double linked list.
+```c
+typedef struct  s_dlst
+{
+    void            *content;
+    struct s_dlst   *next;
+    struct s_dlst   *prev;
+}               t_dlst;
+```
+```c
+t_dlst	*dlst_new(void *content);
+```
+```c
+void	dlst_add_front(t_dlst **s_dlst_src, t_dlst *s_dlst_new);
+```
+```c
+void	dlst_add_back(t_dlst **s_dlst_src, t_dlst *new);
+```
+```c
+void	dlst_map(t_dlst *s_dlst, void (*func)(void *));
+```
+```c
+void	dlst_loop(t_dlst **s_dlst);
 ```
