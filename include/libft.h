@@ -82,5 +82,6 @@ void	dlst_add_back(t_dlst **s_dlst_src, t_dlst *new);
 void	dlst_map(t_dlst *s_dlst, void (*func)(void *));
 void	dlst_loop(t_dlst **s_dlst);
 void	dlst_remove_node(t_dlst	*node);
+void	dlst_free(t_dlst *s_dlst);
 
 #endif
