@@ -8,7 +8,7 @@ This is my implementation of some functions from the libc and some classical dat
 ``make`` will compile a ``libft.a`` binary.
 
 ### Single-line installation
-> ```commandline 
+> ```commandline
 > git clone https://github.com/Kllaster/libft.git && cd libft && make
 >  ```
 
@@ -52,6 +52,9 @@ size_t	ft_strlcat(char *dst, const char *src, size_t size);
 ```
 ```c
 size_t	ft_strlcpy(char *dst, const char *src, size_t size);
+```
+```c
+int		ft_strichr(char *str, int sumb);
 ```
 ```c
 char	*ft_strchr(char *str, int sumb);
@@ -134,6 +137,9 @@ void	kl_free_arr(void *arr);
 ```c
 char	*kl_strdup_len(const char *str, size_t len);
 ```
+```c
+char	*kl_strjoin_free(char *s1, char *s2);
+```
 
 ## Functions dlst
 
@@ -151,14 +157,23 @@ typedef struct  s_dlst
 t_dlst	*dlst_new(void *content);
 ```
 ```c
+t_dlst	*dlst_last_node(t_dlst *lst);
+```
+```c
 void	dlst_add_front(t_dlst **s_dlst_src, t_dlst *s_dlst_new);
 ```
 ```c
 void	dlst_add_back(t_dlst **s_dlst_src, t_dlst *new);
 ```
 ```c
-void	dlst_map(t_dlst *s_dlst, void (*func)(void *));
+void	dlst_remove_node(t_dlst	*node);
 ```
 ```c
 void	dlst_loop(t_dlst **s_dlst);
+```
+```c
+void	dlst_map(t_dlst *s_dlst, void (*func)(void *));
+```
+```c
+void	dlst_free(t_dlst *s_dlst);
 ```

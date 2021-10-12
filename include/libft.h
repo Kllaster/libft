@@ -48,6 +48,7 @@ void	ft_putendl_fd(char *s, int fd);
 void	ft_putnbr_fd(int n, int fd);
 size_t	ft_strlcat(char *dst, const char *src, size_t size);
 size_t	ft_strlcpy(char *dst, const char *src, size_t size);
+int		ft_strichr(char *str, int sumb);
 char	*ft_strchr(char *str, int sumb);
 char	*ft_strrchr(char *dst, int sumb);
 char	*ft_strnstr(const char *big, const char *little, size_t len);
@@ -74,13 +75,14 @@ void	*kl_malloc(size_t size);
 void	kl_end(char *str, int exit_code);
 void	kl_free_arr(void *arr);
 char	*kl_strdup_len(const char *str, size_t len);
+char	*kl_strjoin_free(char *s1, char *s2);
 
 t_dlst	*dlst_new(void *content);
 t_dlst	*dlst_last_node(t_dlst *lst);
 void	dlst_add_front(t_dlst **s_dlst_src, t_dlst *s_dlst_new);
 void	dlst_add_back(t_dlst **s_dlst_src, t_dlst *new);
 void	dlst_map(t_dlst *s_dlst, void (*func)(void *));
-void	dlst_loop(t_dlst **s_dlst);
+void	dlst_loop(t_dlst *s_dlst);
 void	dlst_remove_node(t_dlst	*node);
 void	dlst_free(t_dlst *s_dlst);
 
