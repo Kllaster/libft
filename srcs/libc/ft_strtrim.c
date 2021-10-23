@@ -36,7 +36,7 @@ char	*ft_strtrim(char const *str, char const *set)
 	start = 0;
 	while (str[start] && ft_checkset(str[start], (char *)set))
 		start++;
-	while (str[end] && ft_checkset(str[end], (char *)set))
+	while (end != -1 && str[end] && ft_checkset(str[end], (char *)set))
 		end--;
 	if (end == -1)
 		return (ft_calloc(1, sizeof(char)));

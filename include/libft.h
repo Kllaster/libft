@@ -71,10 +71,12 @@ int		ft_toupper(int ch);
 int		ft_tolower(int ch);
 int		ft_atoi(const char *str);
 
-void	*kl_malloc(size_t size);
 void	kl_end(char *str, int exit_code);
+void	*kl_malloc(size_t size);
+void	*kl_calloc(size_t num, size_t size);
 void	kl_free_arr(void *arr);
 char	*kl_strdup_len(const char *str, size_t len);
+void	**kl_add_to_arr(void **arr, void *new_el);
 char	*kl_strjoin_free(char *s1, char *s2);
 
 t_dlst	*dlst_new(void *content);
