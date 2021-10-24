@@ -1,6 +1,6 @@
 #include "libft.h"
 
-void	**kl_add_to_arr(void **arr, void *new_el)
+void	**arr_add_back(void **arr, void *new_el)
 {
 	int		i;
 	void	**new_arr;
