@@ -80,6 +80,7 @@ char	*kl_strjoin_free(char *s1, char *s2);
 
 void	arr_cpy(void **dst, void **src);
 void	**arr_add_back(void **arr, void *new_el);
+void	**arr_remove_el(void **arr, size_t key);
 
 t_dlst	*dlst_new(void *content);
 t_dlst	*dlst_last_node(t_dlst *lst);
