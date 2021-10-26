@@ -71,6 +71,7 @@ int		ft_toupper(int ch);
 int		ft_tolower(int ch);
 int		ft_atoi(const char *str);
 
+int		kl_strcmp(char *str1, char *str2);
 void	kl_end(char *str, int exit_code);
 void	*kl_malloc(size_t size);
 void	*kl_calloc(size_t num, size_t size);
